@@ -292,7 +292,7 @@ $ groovy collections.groovy
 $
 ```
 
-#### Closures
+##### Closures
 
 One great feature in Groovy is the use of closures. Closures are basically variables that are set to a function call. The closure is defined immediately, but isn't executed until it is called.
 
@@ -325,7 +325,7 @@ This tutorial keeps getting better!
 $
 ```
 
-#### Other syntax
+##### Other syntax
 
 For more on Groovy syntax, check out the syntax section of the Groovy website: http://groovy-lang.org/syntax.html.
 
