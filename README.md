@@ -81,7 +81,8 @@ If you are on a windows system, there is a Groovy Windows Installer that you can
 
 Again, you will need to make sure your ```JAVA_HOME``` environment variable is set and is pointed to your JDK for the Groovy installation to be successful.
 
-## Getting Started With Groovy
+## Groovy Basics
+
 #### Groovy Shell:
 
 Let's first start exploring Groovy by using the Groovy shell. Once you have Groovy installed, you can launch the Groovy shell by running the following command:
@@ -194,13 +195,195 @@ EUR
 $
 ```
 
-## Syntax
+## Groovy Syntax
+
+##### Print Line Statement
+
+From out previous examples, you probably have noticed how easy and readable it is to print the console with Groovy. Let's do this in a new file called ```println.groovy``` found in the ```groovy-syntax/``` directory.
+
+```groovy
+// println.groovy
+
+println 'This tutorial is great!'
+```
+
+You'll notice that there are no classes, imports, or even a main method. We also don't need a semicolon or parentheses around the string for the ```println``` method.
+
+When we invoke the Groovy runtime on this file, we see the expected output:
+
+```bash
+$ groovy println.groovy
+This tutorial is great!
+$
+```
+
+##### Collections and Ranges
+
+Lets create a collection of the names of some of the professors in th BYU Information Systems Department and iterate over each of them, printing a message to the console each time.
+
+```groovy
+// collections.groovy
+
+def professors = [
+    "Dr. Merservy",
+    "Dr. Dean",
+    "Dr. Keith",
+    "Dr. Liddle",
+    "Dr. B. Anderson",
+    "Dr. G. Anderson",
+    "Dr. Allen",
+    "Dr. Gaskin",
+    "Dr. Vance"
+]
+
+for (professor in professors) {
+    def greetingText = " is the best!"
+    
+    println "$professor" + "$greetingText"
+}
+```
+
+You'll notice that in Groovy you don't have to declare variable types because it is a dynamic language. Groovy also allows us to have a readable for loop by using the iterator variable ```professor```. You will also notice two "G Strings" where we have ```"$professor"``` and ```"$greetingText"```. G strings allow us to inject variables and other Groovy code into strings.
+
+When we invoke the Groovy runtime on this file, we see the expected output:
+
+```bash
+$ groovy collections.groovy
+Dr. Merservy is the best!           
+Dr. Dean is the best!               
+Dr. Keith is the best!              
+Dr. Liddle is the best!             
+Dr. B. Anderson is the best!        
+Dr. G. Anderson is the best!        
+Dr. Allen is the best!              
+Dr. Gaskin is the best!             
+Dr. Vance is the best!
+$
+```
+
+Let's do something similar to our collection example. In Groovy, we can define ranges without having to explicitly define each value in the range. Check out the example below:
+
+```groovy
+// ranges.groovy
+
+def numbers = 2..13
+
+for (number in numbers) {
+    println number
+}
+```
+
+When we invoke the Groovy runtime on this file, we see the expected output:
+
+```bash
+$ groovy collections.groovy
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+$
+```
+
+#### Closures
+
+One great feature in Groovy is the use of closures. Closures are basically variables that are set to a function call. The closure is defined immediately, but isn't executed until it is called.
+
+Check out the simple closure example below:
+
+```groovy
+// closures.groovy
+
+def myFirstClosure = { println 'This tutorial keeps getting better!' }
+
+for (i in 1..10) {
+    myFirstClosure()
+}
+```
+
+When we invoke the Groovy runtime on this file, we see the expected output:
+
+```bash
+$ groovy closures.groovy
+This tutorial keeps getting better! 
+This tutorial keeps getting better! 
+This tutorial keeps getting better! 
+This tutorial keeps getting better! 
+This tutorial keeps getting better! 
+This tutorial keeps getting better! 
+This tutorial keeps getting better! 
+This tutorial keeps getting better! 
+This tutorial keeps getting better! 
+This tutorial keeps getting better!
+$
+```
+
+#### Other syntax
+
+For more on Groovy syntax, check out the syntax section of the Groovy website: http://groovy-lang.org/syntax.html.
 
 ## Project
 
 To wrap up this tutorial, let's do a mini project together where we will use the https://openweathermap.org API to get the current weather for various zip codes. You can find the files for the project in the ```groovy-project/``` directory. Let's see if we can use some of the cool Groovy syntax we have learned!
 
 For simplicity, let's just take an input of one to many zip codes in the terminal and return the current weather for each of those zip codes by printing them out to the terminal.
+
+If you would like to follow along, go ahead and go to https://openweathermap.org and sign up to get an API Key. It will take about 10 minutes for you API Key to be activated once it is created and calling the API won't work until the key is activated.
+
+Let's take a look at the code in our ```project.groovy``` file to see how great Groovy is!
+
+```groovy
+// project.groovy
+
+@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.6')
+
+import static groovyx.net.http.ContentType.TEXT
+
+def host = 'http://api.openweathermap.org'
+def path = 'data/2.5/weather'
+def zipCodes = ['84062','81001','90210'] 
+def apiKey = 'c07c1b72ab12ab07a08c159e2794df8a'
+def units = 'imperial'
+
+for (zipCode in zipCodes) {
+    def httpRequest = "${host}/${path}?zip=${zipCode}&appid=${apiKey}&units=${units}"
+    def client = new groovyx.net.http.HTTPBuilder(httpRequest)
+        client.setHeaders(Accept: 'application/json')
+    def json = client.get(contentType: TEXT)
+    def response = new groovy.json.JsonSlurper().parse(json) 
+    
+    println ''
+    println 'City:      ' + response.name
+    println 'Temp(F):   ' + response.main.temp
+    println ''
+}
+```
+
+When we invoke the Groovy runtime on this file, we see the expected output:
+
+```bash
+$ groovy project.groovy
+
+City:      Provo                    
+Temp(F):   53.26                    
+
+
+City:      Pueblo                   
+Temp(F):   60.21                    
+
+
+City:      Beverly Hills            
+Temp(F):   60.91   
+
+$
+```
 
 ## Conclusion
 
