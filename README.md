@@ -3,7 +3,7 @@
 
 In this tutorial, we will explore the fundamentals of the Groovy language. First we will have a breif introduction to Groovy as well as why and when it is used. Then we will talk about how to install Groovy our local machines. Finally we will look at Groovy's syntax and wrap things up by using the OpenWeatherMap API to create a small project in Groovy. Below you will find a link to the video that goes through this tutorial as well as the presentation that is used in the video.
 
-* [YouTube Video]()
+* [YouTube Video](https://youtu.be/YLzlphglrDU)
 * [Google Slides Presentation](https://docs.google.com/presentation/d/1j4Hr1s1tiIp_5uhqayRYYyn9ZgHoBjKzS4CUhSkmG_o/edit?usp=sharing) 
 
 ## Java and the JVM
