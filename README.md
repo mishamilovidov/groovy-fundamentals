@@ -1,14 +1,52 @@
 # Groovy Fundamentals Tutorial
 ###### Prepared by: Misha Milovidov
 
-In this tutorial, we will explore the fundamentals of the Groovy language. First I will give a brief background of Groovy, as well as why and when it is use. Then I will talk about how to install Groovy on you machine. Finally we will look at Gro0vy's  syntax and perform a few programming tasks. Below are a link to a video that goes through this tutorial as well as the presentation that is used in the video.
+In this tutorial, we will explore the fundamentals of the Groovy language. First we will have a breif introduction to Groovy as well as why and when it is used. Then we will talk about how to install Groovy our local machines. Finally we will look at Groovy's syntax and wrap things up by using the OpenWeatherMap API to create a small project in Groovy. Below you will find a link to the video that goes through this tutorial as well as the presentation that is used in the video.
 
 * [YouTube Video]()
 * [Google Slides Presentation](https://docs.google.com/presentation/d/1j4Hr1s1tiIp_5uhqayRYYyn9ZgHoBjKzS4CUhSkmG_o/edit?usp=sharing) 
 
 ## Java and the JVM
 
+Java has been around since 1995 and has been used in a variety of environments and on a variety of devices; we see Java in enterprise server-side architectures all the way down to mobile devices. Java has been slow to evolve over the years, which has led to the developing of new languages written for the JVM as well as languages being ported over to run on the JVM. Some examples of languages that have been ported over to the JVM are jThon and jRuby, which are versions of Python and Ruby. Some examples of languages written specifically for the JVM are Scala, Clojure, and our very own Groovy.
+
+Below is a breif diagram of the Java Development Kit distributed by Oracle.
+
+![Image of JDK](//is542.construo.us/images/jdk.png)
+
+These alternative JVM languages still compile down to JVM bytecode and eventually to machine code so that the instructions can be executed on the host machine.
+
 ## Groovy
+
+Now let's take a look at Groovy itself. Here are some characteristics of Groovy:
+
+* Dynamic Language
+* Runs natively in the JVM
+* Supports functional programming
+* Excellent support for processing XML and JSON
+* Great support in existing Java IDEs
+
+Let's now compare Groovy and Java:
+
+| ![Image of Groovy Logo](//is542.construo.us/images/groovy.png) | ![Image of Java Logo](//is542.construo.us/images/java.png)|
+|---|---|
+|Dynamic Language (typing constraints at run time)|Static Language (typing constraints at compile time)|
+|Strongly Typed|Strongly Typed|
+|Automatically Generates Getters and Setters|Provide Getters and Setters|
+|Main Method Not Required to Execute|Main Method Required to Execute|
+|Syntactic Sugar|   |
+
+##### Why Groovy?
+* Easy Transition with Experience in Java (familiar, Java-like syntax)
+* Existing Java Libraries
+* Fits well in the Java Object-Oriented Model
+* Introduces Functional Programming on the JVM
+
+##### When to Use Groovy:
+* Web Development (Grails)
+* Unit Tests
+* Integration Tests
+* Scripting
 
 ## Installing Groovy
 
@@ -26,7 +64,7 @@ Run the following commands to install SDKMAN and Groovy:
 $ curl -s "https://get.sdkman.io" | bash
 ```
 
-NOTE: You may need to install a few other things on your machine to be able to run the previous command. When I tried it the first time, I had to install the 
+NOTE: You may need to install a few other things on your machine to be able to run the previous command. When I tried it the first time, I had to install the unzip and zip packages.
 
 
 ```bash
